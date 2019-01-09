@@ -1,6 +1,8 @@
-/target/
+target/
 !.mvn/wrapper/maven-wrapper.jar
 
+### MAC ###
+.DS_Store
 ### STS ###
 .apt_generated
 .classpath
@@ -8,7 +10,6 @@
 .project
 .settings
 .springBeans
-.sts4-cache
 
 ### IntelliJ IDEA ###
 .idea
@@ -17,9 +18,24 @@
 *.ipr
 
 ### NetBeans ###
-/nbproject/private/
-/build/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+## mvn ##
+.mvn
+mvnw*
+target/
+
+## log ##
+logs/**
+log/**
+**/log/**
+LOG_PATH_IS_UNDEFINED
+/log/
+"taxi-finance/E:\\tmp/"
+"taxi-finance/E:\\tmp\\20181114_8523860.gzip"
+/taxi-system/.gitignore
