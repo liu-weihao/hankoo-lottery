@@ -1,0 +1,48 @@
+server:
+  port: 8359
+  tomcat:
+    uri-encoding: UTF-8
+spring:
+  application:
+    name: yoogurt-bonus
+  main:
+    allow-bean-definition-overriding: true
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      file-size-threshold: 10
+  freemarker:
+    cache: false
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  datasource:
+    url: jdbc:mysql://rm-bp1cj68xrmcrqk78c.mysql.rds.aliyuncs.com:3306/hankoo?useUnicode=true&characterEncoding=UTF8&useSSL=false
+    username: yoogurt
+    password: taxi123!@#
+    driver-class-name: com.mysql.cj.jdbc.Driver
+pagehelper:
+  helperDialect: mysql
+  reasonable: false
+  params: count=countSql
+# mybatis配置
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.dx.ss.hankoo.dal.beans
+mapper:
+  mappers:
+    - tk.mybatis.mapper.common.Mapper
+    - tk.mybatis.mapper.common.MySqlMapper
+  not-empty: true
+  identity: MYSQL
+logging:
+  path: ./log
+  level:
+    org:
+      springframework:
+        web: debug

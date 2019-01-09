@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dx.ss.hankoo.dal.mapper.PrizeMapper">
+  <resultMap id="BaseResultMap" type="com.dx.ss.hankoo.dal.beans.Prize">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="award" jdbcType="VARCHAR" property="award" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+    <result column="is_over" jdbcType="BIT" property="isOver" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+  </resultMap>
+</mapper>

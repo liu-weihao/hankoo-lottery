@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dx.ss.hankoo.dal.mapper.BlackParticipantMapper">
+  <resultMap id="BaseResultMap" type="com.dx.ss.hankoo.dal.beans.BlackParticipant">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="prize_id" jdbcType="INTEGER" property="prizeId" />
+    <result column="participant_id" jdbcType="INTEGER" property="participantId" />
+  </resultMap>
+</mapper>
