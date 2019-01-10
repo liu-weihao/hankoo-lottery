@@ -8,4 +8,6 @@ import java.util.List;
 public interface ParticipantService {
 
     List<Participant> getParticipants(ParticipantSearch search);
+
+    boolean removeParticipant(Integer id);
 }

@@ -13,9 +13,51 @@
     <link rel="stylesheet" href="/plugins/layui/css/layui.css">
     <link rel="stylesheet" type="text/css" href="/css/index/globle.css">
     <link rel="stylesheet" type="text/css" href="/css/index/admin.css">
+    <style type="text/css">
+        .content {
+            margin-top: 100px;
+            display: -ms-flexbox;
+            display: flex;
+            text-align: center;
+            color: #2c3e50;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+        .award_block {
+            background-color: #20a0ff;
+            line-height: 100px;
+            margin-left: 30px;
+            width: 200px;
+            height: 100px;
+            color: #fff;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
 </head>
+
 <body>
-<h1>welcome</h1>
+<div class="content">
+    <div class="award_block">
+        特等奖
+    </div>
+    <div class="award_block">
+        一等奖
+    </div>
+    <div class="award_block">
+        二等奖
+    </div>
+    <div class="award_block">
+        三等奖
+    </div>
+    <div class="award_block">
+        四等奖
+    </div>
+</div>
 </body>
 
 </html>

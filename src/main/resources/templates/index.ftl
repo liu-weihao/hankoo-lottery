@@ -21,10 +21,7 @@
         <div class="layui-main">
             <!-- logo区域 -->
             <div class="admin-logo-box">
-                <a class="logo" href="/index"><img src="/images/logo.jpg" alt="logo"></a>
-                <div class="larry-side-menu">
-                    <i class="fa fa-bars" aria-hidden="true"></i>
-                </div>
+                <a class="logo" href="/index"><img src="/images/logo.png" alt="logo"></a>
             </div>
             <!-- 顶级菜单区域 -->
             <div class="layui-larry-menu">
@@ -74,7 +71,7 @@
                     </a>
                     <dl class="layui-nav-child">
                         <dd>
-                            <a href="javascript: void(0);" data-url="/users.web?type=10">
+                            <a href="javascript: void(0);" data-url="/toParticipants.web">
                                 <i class="iconfont" data-icon='icon-yonghu1'></i>
                                 <span>活动用户</span>
                             </a>
@@ -82,7 +79,7 @@
                     </dl>
                     <dl class="layui-nav-child">
                         <dd>
-                            <a href="javascript: void(0);" data-url="/users.web?type=20">
+                            <a href="javascript: void(0);" data-url="/toBlackParticipants.web">
                                 <i class="iconfont" data-icon='icon-yonghu1'></i>
                                 <span>黑名单设置</span>
                             </a>
@@ -141,12 +138,11 @@
         </div>
     </div>
 </div>
-<script src="/plugins/jquery/jquery-3.1.1.min.js"></script>
-<script src="/plugins/layui/layui.js"></script>
-<script src="/plugins/layui/extends/uploader.js"></script>
+<script type="text/javascript" src="/plugins/jquery/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="/plugins/layui/layui.js"></script>
 <script type="text/javascript" src="/js/index/larry.js"></script>
 <script type="text/javascript" src="/js/index/index.js"></script>
-<script src="/js/common.js"></script>
+<script type="text/javascript" src="/js/common.js"></script>
 <script type="text/javascript">
     var element;
     layui.use([ 'jquery', 'layer', 'element' ], function() {

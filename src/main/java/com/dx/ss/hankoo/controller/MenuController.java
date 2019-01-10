@@ -15,4 +15,14 @@ public class MenuController {
     public String welcome() {
         return "welcome";
     }
+
+    @RequestMapping(value = "/toParticipants.web")
+    public String toParticipants() {
+        return "/user/participant_list";
+    }
+
+    @RequestMapping(value = "/toBlackParticipants.web")
+    public String toBlackParticipants() {
+        return "/user/black_participant_list";
+    }
 }

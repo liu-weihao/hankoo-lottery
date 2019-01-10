@@ -27,7 +27,8 @@
 
 .logo img {
     width: auto;
-    height: 70px;
+    height: 40px;
+    margin-top: 10px;
 }
 
 .header .layui-nav {

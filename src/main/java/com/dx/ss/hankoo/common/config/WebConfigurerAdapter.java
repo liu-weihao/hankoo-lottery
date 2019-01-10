@@ -16,7 +16,7 @@ public class WebConfigurerAdapter implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         //WEB端的请求拦截器
-        registry.addInterceptor(new WebSessionInterceptor()).addPathPatterns("/hankoo/**/*.web", "/index");
+        registry.addInterceptor(new WebSessionInterceptor()).addPathPatterns("/hankoo/**/*.web", "/index", "/welcome");
         //默认的请求拦截器，只拦截后缀为 .do 的请求
         registry.addInterceptor(new DefaultInterceptor()).addPathPatterns("/**/*.do");
         //Web端全局异常拦截器，尽量往后注册
