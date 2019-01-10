@@ -16,31 +16,6 @@
 </head>
 
 <body>
-<form id="statistics_form" class="layui-form layui-form-pane" style="margin: 8px;">
-
-</form>
-<div class="layui-inline">
-    <form id="form" class="layui-form" style="margin: 8px;">
-        <div class="layui-inline">
-            <input class="layui-input" name="name" placeholder="姓名" autocomplete="off" value="">
-        </div>
-        <div class="layui-inline">
-            <div class="layui-input-inline">
-                <select name="prizeId">
-                    <option value="">全部</option>
-                    <option value="1">特等奖</option>
-                    <option value="2">一等奖</option>
-                    <option value="3">二等奖</option>
-                    <option value="4">三等奖</option>
-                    <option value="5">四等奖</option>
-                </select>
-            </div>
-        </div>
-    </form>
-</div>
-<div class="layui-inline">
-    <button id="search" class="layui-btn" onclick="refresh();">搜索</button>
-</div>
 <table id="grid"></table>
 <script src="/plugins/jquery/jquery-3.1.1.min.js"></script>
 <script src="/plugins/layui/layui.js"></script>
@@ -52,15 +27,18 @@
         table = layui.table;
         getStatistics();
         laygrid({
-            url: '/hankoo/user/participants/black.web',
-            height: "full-132",
+            url: '/hankoo/lottery/prizes.web',
             cols: [[
-                {field: 'name', title: '姓名', align: 'center'},
-                {field: 'prizeName', title: '奖项', align: 'center'},
+                {field: 'name', title: '奖项', align: 'center'},
+                {field: 'award', title: '奖品名称', align: 'center'},
+                {field: 'count', title: '奖品数量', align: 'center'},
                 {
-                    field: '', title: '操作', align: 'center', templet: function (rowData) {
-                        return "<a class='layui-btn layui-btn-xs' href='javascript:void(0);' onclick=\"removeBlackParticipant('" + rowData.id + "');\">删除</a>";
+                    field: '', title: '是否已结束', align: 'center', templet: function (rowData) {
+                    if (rowData.isOver) {
+                        return "<span style='color: red'>已结束</span>";
                     }
+                    return '<i><未结束></i>'
+                }
                 }
             ]]
         });

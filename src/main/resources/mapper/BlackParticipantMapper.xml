@@ -5,8 +5,29 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <result column="id" jdbcType="INTEGER" property="id" />
+    <id column="id" jdbcType="INTEGER" property="id" />
     <result column="prize_id" jdbcType="INTEGER" property="prizeId" />
     <result column="participant_id" jdbcType="INTEGER" property="participantId" />
   </resultMap>
+
+  <resultMap id="BlackParticipantModel" type="com.dx.ss.hankoo.dal.model.BlackParticipantModel">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="prize_id" jdbcType="INTEGER" property="prizeId" />
+    <result column="prize_name" jdbcType="VARCHAR" property="prizeName" />
+    <result column="participant_id" jdbcType="INTEGER" property="participantId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+  </resultMap>
+
+  <select id="getBlackParticipants" parameterType="map" resultMap="BlackParticipantModel">
+    SELECT b.id, prize_id, prize.name AS prize_name, participant_id, p.name
+    FROM black_participant AS b, participant AS p, prize
+    WHERE b.prize_id=prize.id AND b.participant_id=p.id
+    <if test="search.name != null and search.name != ''">
+      AND p.name=#{search.name}
+    </if>
+    <if test="search.prizeId != null and search.prizeId != ''">
+      AND b.prize_id=#{search.prizeId}
+    </if>
+    ORDER BY id DESC
+  </select>
 </mapper>

@@ -25,4 +25,9 @@ public class MenuController {
     public String toBlackParticipants() {
         return "/user/black_participant_list";
     }
+
+    @RequestMapping(value = "/toPrizeList.web")
+    public String toPrizeList() {
+        return "/lottery/prize_list";
+    }
 }

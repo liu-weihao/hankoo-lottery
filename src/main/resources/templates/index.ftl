@@ -94,7 +94,7 @@
                     </a>
                     <dl class="layui-nav-child">
                         <dd>
-                            <a href="javascript: void(0);" data-url="/trainItem.web">
+                            <a href="javascript: void(0);" data-url="/toPrizeList.web">
                                 <i class="iconfont" data-icon='icon-yonghu1'></i>
                                 <span>奖项列表</span>
                             </a>

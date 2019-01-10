@@ -71,7 +71,7 @@
                 {field: 'name', title: '姓名', align: 'center'},
                 {field: 'info', title: '附加信息', align: 'center'},
                 {
-                    field: '', title: '是否中奖', align: 'center', style: 'height: 55px;', templet: function (rowData) {
+                    field: '', title: '是否中奖', align: 'center', templet: function (rowData) {
                         if (rowData.isWinner) {
                             return "<span style='color: red'>是</span>";
                         }
@@ -86,45 +86,6 @@
             ]]
         });
     });
-
-    function removeParticipant(id) {
-        if (window.confirm("您确认要删除这名参与者吗？")) {
-            $.ajax({
-                url: '/hankoo/user/participants.web',
-                type: 'DELETE',
-                data: {"id": id},
-                dataType: 'json',
-                success: function (result) {
-                    if (result.status == SUCCESS) {
-                        layer.msg('删除成功', {
-                            icon: 6,
-                            time: 600
-                        }, function () {
-                            refresh();
-                        });
-                    } else {//请求失败
-                        layer.msg(result.message, {
-                            icon: 5,
-                            time: 1000
-                        });
-                    }
-                }
-            })
-        }
-    }
-    function getParticipantStatistics() {
-        $.ajax({
-            url: '/hankoo/user/participants/statistics.web',
-            type: 'GET',
-            dataType: 'json',
-            success: function (result) {
-                if (result.status == SUCCESS) {
-                    $("#total").html(result.body.total);
-                    $("#winnerCount").html(result.body.winnerCount);
-                }
-            }
-        })
-    }
 
     function refresh() {
         table.reload("grid", {

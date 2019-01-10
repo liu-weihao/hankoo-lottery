@@ -5,7 +5,6 @@
     <!--
       WARNING - @mbg.generated
     -->
-
     <id column="user_id" jdbcType="VARCHAR" property="userId" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="nickname" jdbcType="VARCHAR" property="nickname" />

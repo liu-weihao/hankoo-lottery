@@ -5,7 +5,7 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <result column="id" jdbcType="INTEGER" property="id" />
+    <id column="id" jdbcType="INTEGER" property="id" />
     <result column="prize_id" jdbcType="INTEGER" property="prizeId" />
     <result column="participant_id" jdbcType="INTEGER" property="participantId" />
     <result column="count" jdbcType="INTEGER" property="count" />

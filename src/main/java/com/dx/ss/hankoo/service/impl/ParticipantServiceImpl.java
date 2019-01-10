@@ -1,14 +1,16 @@
-package com.dx.ss.hankoo.service.impl.impl;
+package com.dx.ss.hankoo.service.impl;
 
 import com.dx.ss.hankoo.dal.beans.Participant;
 import com.dx.ss.hankoo.dal.mapper.ParticipantMapper;
 import com.dx.ss.hankoo.dal.model.ParticipantStatisticsModel;
 import com.dx.ss.hankoo.dal.search.biz.ParticipantSearch;
+import com.dx.ss.hankoo.service.BlackParticipantService;
 import com.dx.ss.hankoo.service.ParticipantService;
 import com.github.pagehelper.PageHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
@@ -18,6 +20,9 @@ public class ParticipantServiceImpl implements ParticipantService {
 
     @Autowired
     private ParticipantMapper participantMapper;
+
+    @Autowired
+    private BlackParticipantService blackParticipantService;
 
     @Override
     public List<Participant> getParticipants(ParticipantSearch search) {
@@ -34,7 +39,9 @@ public class ParticipantServiceImpl implements ParticipantService {
     }
 
     @Override
+    @Transactional
     public boolean removeParticipant(Integer id) {
+        blackParticipantService.removeBlackParticipant(id);
         return id != null && participantMapper.deleteByPrimaryKey(id) == 1;
     }
 

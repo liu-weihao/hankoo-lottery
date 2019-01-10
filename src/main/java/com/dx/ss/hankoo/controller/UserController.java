@@ -5,10 +5,13 @@ import com.dx.ss.hankoo.common.pager.BasePager;
 import com.dx.ss.hankoo.common.pager.IPagerFactory;
 import com.dx.ss.hankoo.dal.beans.Participant;
 import com.dx.ss.hankoo.dal.enums.StatusCode;
+import com.dx.ss.hankoo.dal.model.BlackParticipantModel;
 import com.dx.ss.hankoo.dal.model.ResponseObj;
 import com.dx.ss.hankoo.dal.model.SessionUser;
+import com.dx.ss.hankoo.dal.search.biz.BlackParticipantSearch;
 import com.dx.ss.hankoo.dal.search.biz.ParticipantSearch;
 import com.dx.ss.hankoo.form.LoginForm;
+import com.dx.ss.hankoo.service.BlackParticipantService;
 import com.dx.ss.hankoo.service.ParticipantService;
 import com.dx.ss.hankoo.service.UserService;
 import com.github.pagehelper.Page;
@@ -25,7 +28,6 @@ import java.util.List;
 @RequestMapping("/hankoo/user")
 public class UserController extends BaseController {
 
-
     @Autowired
     private IPagerFactory pagerFactory;
 
@@ -34,6 +36,9 @@ public class UserController extends BaseController {
 
     @Autowired
     private ParticipantService participantService;
+
+    @Autowired
+    private BlackParticipantService blackParticipantService;
 
 
     @PostMapping(value = "/i/login.do")
@@ -75,6 +80,28 @@ public class UserController extends BaseController {
     @ResponseBody
     public ResponseObj removeParticipant(@RequestParam Integer id) {
         if (participantService.removeParticipant(id)) {
+            return ResponseObj.success();
+        }
+        return ResponseObj.fail();
+    }
+
+    @GetMapping(value = "/participants/black.web")
+    @ResponseBody
+    public BasePager<BlackParticipantModel> getBlackParticipants(BlackParticipantSearch search) {
+        List<BlackParticipantModel> participants = blackParticipantService.getBlackParticipants(search);
+        return pagerFactory.generatePager((Page<BlackParticipantModel>) participants);
+    }
+
+    @GetMapping(value = "/participants/black/statistics.web")
+    @ResponseBody
+    public ResponseObj getBlackParticipantStatistics() {
+        return ResponseObj.success(blackParticipantService.getBlackParticipantStatistics());
+    }
+
+    @DeleteMapping(value = "/participants/black.web")
+    @ResponseBody
+    public ResponseObj removeBlackParticipants(@RequestParam Integer id) {
+        if (blackParticipantService.removeBlackParticipantById(id)) {
             return ResponseObj.success();
         }
         return ResponseObj.fail();
