@@ -41,7 +41,7 @@ public class UserController extends BaseController {
     private BlackParticipantService blackParticipantService;
 
 
-    @PostMapping(value = "/i/login.do")
+    @PostMapping(value = "/login.do")
     @ResponseBody
     public ResponseObj doLogin(HttpServletRequest request, @Valid LoginForm form, BindingResult result) {
         if (result.hasErrors()) {
@@ -61,6 +61,12 @@ public class UserController extends BaseController {
     public ResponseObj logout(HttpServletRequest request) {
         destory(request);
         return ResponseObj.success();
+    }
+
+    @GetMapping(value = "/participants.do")
+    @ResponseBody
+    public ResponseObj getParticipants() {
+        return ResponseObj.success(participantService.getParticipants());
     }
 
     @GetMapping(value = "/participants.web")
