@@ -16,8 +16,22 @@
 </head>
 
 <body>
+<form id="statistics_form" class="layui-form layui-form-pane" style="margin: 8px;">
+    <div class="layui-inline">
+        <label class="layui-form-label">参与人数</label>
+        <div class="layui-input-inline">
+            <label id="total" class="layui-form-label">-</label>
+        </div>
+    </div>
+    <div class="layui-inline">
+        <label class="layui-form-label">中奖人数</label>
+        <div class="layui-input-inline">
+            <label id="winnerCount" class="layui-form-label">-</label>
+        </div>
+    </div>
+</form>
 <div class="layui-inline">
-    <form id="form" class="layui-form" style="margin: 15px;">
+    <form id="form" class="layui-form" style="margin: 8px;">
         <div class="layui-inline">
             <input class="layui-input" name="name" placeholder="姓名" autocomplete="off" value="">
         </div>
@@ -35,9 +49,11 @@
 <div class="layui-inline">
     <button id="search" class="layui-btn" onclick="refresh();">搜索</button>
 </div>
+<#--
 <div class="layui-inline" style="margin: 10px;">
-    <button class="layui-btn" onclick="saveQz();">新增文章</button>
+    <button class="layui-btn" onclick="saveQz();">新增</button>
 </div>
+-->
 <table id="grid"></table>
 <script src="/plugins/jquery/jquery-3.1.1.min.js"></script>
 <script src="/plugins/layui/layui.js"></script>
@@ -47,10 +63,10 @@
     var table;
     layui.use(['table', 'form'], function () {
         table = layui.table;
-        var form = layui.form;
+        getParticipantStatistics();
         laygrid({
             url: '/hankoo/user/participants.web',
-            where: {"type": "common"},
+            height: "full-132",
             cols: [[
                 {field: 'name', title: '姓名', align: 'center'},
                 {field: 'info', title: '附加信息', align: 'center'},
@@ -95,6 +111,19 @@
                 }
             })
         }
+    }
+    function getParticipantStatistics() {
+        $.ajax({
+            url: '/hankoo/user/participants/statistics.web',
+            type: 'GET',
+            dataType: 'json',
+            success: function (result) {
+                if (result.status == SUCCESS) {
+                    $("#total").html(result.body.total);
+                    $("#winnerCount").html(result.body.winnerCount);
+                }
+            }
+        })
     }
 
     function refresh() {

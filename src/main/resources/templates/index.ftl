@@ -80,7 +80,7 @@
                     <dl class="layui-nav-child">
                         <dd>
                             <a href="javascript: void(0);" data-url="/toBlackParticipants.web">
-                                <i class="iconfont" data-icon='icon-yonghu1'></i>
+                                <i class="iconfont" data-icon='icon-jiaoseguanli4'></i>
                                 <span>黑名单设置</span>
                             </a>
                         </dd>
@@ -147,6 +147,19 @@
     var element;
     layui.use([ 'jquery', 'layer', 'element' ], function() {
         element = layui.element;
+        //导航切换
+        $('dd > a').click(function () {
+            var $a = $(this);
+            var href = $a.attr('data-url');
+            var title = $a.find("span").text();
+            if (href && href.length > 0) {
+                var data = {
+                    href: href,
+                    title: title
+                };
+                navtab.tabAdd(data);
+            }
+        });
     });
 
     function logout() {

@@ -2,6 +2,7 @@ package com.dx.ss.hankoo.service.impl.impl;
 
 import com.dx.ss.hankoo.dal.beans.Participant;
 import com.dx.ss.hankoo.dal.mapper.ParticipantMapper;
+import com.dx.ss.hankoo.dal.model.ParticipantStatisticsModel;
 import com.dx.ss.hankoo.dal.search.biz.ParticipantSearch;
 import com.dx.ss.hankoo.service.ParticipantService;
 import com.github.pagehelper.PageHelper;
@@ -35,5 +36,14 @@ public class ParticipantServiceImpl implements ParticipantService {
     @Override
     public boolean removeParticipant(Integer id) {
         return id != null && participantMapper.deleteByPrimaryKey(id) == 1;
+    }
+
+    @Override
+    public ParticipantStatisticsModel getParticipantStatistics() {
+        ParticipantStatisticsModel statistics = new ParticipantStatisticsModel();
+        List<Participant> participants = participantMapper.selectAll();
+        statistics.setTotal(participants.size());
+        statistics.setWinnerCount((int) participants.stream().filter(Participant::getIsWinner).count());
+        return statistics;
     }
 }

@@ -65,6 +65,12 @@ public class UserController extends BaseController {
         return pagerFactory.generatePager((Page<Participant>) participants);
     }
 
+    @GetMapping(value = "/participants/statistics.web")
+    @ResponseBody
+    public ResponseObj getParticipantStatistics() {
+        return ResponseObj.success(participantService.getParticipantStatistics());
+    }
+
     @DeleteMapping(value = "/participants.web")
     @ResponseBody
     public ResponseObj removeParticipant(@RequestParam Integer id) {
