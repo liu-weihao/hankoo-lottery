@@ -25,6 +25,11 @@ public class ParticipantServiceImpl implements ParticipantService {
     private BlackParticipantService blackParticipantService;
 
     @Override
+    public List<Participant> getParticipants() {
+        return participantMapper.selectAll();
+    }
+
+    @Override
     public List<Participant> getParticipants(ParticipantSearch search) {
         Example ex = new Example(Participant.class);
         Example.Criteria criteria = ex.createCriteria();
@@ -52,5 +57,14 @@ public class ParticipantServiceImpl implements ParticipantService {
         statistics.setTotal(participants.size());
         statistics.setWinnerCount((int) participants.stream().filter(Participant::getIsWinner).count());
         return statistics;
+    }
+
+    @Override
+    public int win(Integer prizeId, List<Integer> participantIds) {
+        Example ex = new Example(Participant.class);
+        ex.createCriteria().andIn("id", participantIds);
+        Participant entity = new Participant();
+        entity.setIsWinner(Boolean.TRUE);
+        return participantMapper.updateByExampleSelective(entity, ex);
     }
 }

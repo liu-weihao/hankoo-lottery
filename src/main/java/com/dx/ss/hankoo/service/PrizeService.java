@@ -10,7 +10,11 @@ public interface PrizeService {
 
     List<Prize> getPrizeList();
 
+    Prize getPrizeInfo(Integer prizeId);
+
     List<PrizeRecordModel> getPrizeRecordList(PrizeRecordSearch search);
 
     boolean receivePrize(Integer id, boolean hasReceived);
+
+    List<Integer> draw(Integer prizeId);
 }

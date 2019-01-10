@@ -3,6 +3,7 @@ package com.dx.ss.hankoo.controller;
 import com.dx.ss.hankoo.common.pager.BasePager;
 import com.dx.ss.hankoo.common.pager.IPagerFactory;
 import com.dx.ss.hankoo.dal.beans.Prize;
+import com.dx.ss.hankoo.dal.enums.StatusCode;
 import com.dx.ss.hankoo.dal.model.PrizeRecordModel;
 import com.dx.ss.hankoo.dal.model.ResponseObj;
 import com.dx.ss.hankoo.dal.search.biz.PrizeRecordSearch;
@@ -31,6 +32,16 @@ public class LotteryController {
         return pagerFactory.generatePager((Page<Prize>) participants);
     }
 
+    @GetMapping(value = "/prize.do")
+    @ResponseBody
+    public ResponseObj getPrizeInfo(Integer prizeId) {
+        Prize prize = prizeService.getPrizeInfo(prizeId);
+        if (prize == null) {
+            return ResponseObj.fail(StatusCode.BIZ_FAILED, "奖项不存在");
+        }
+        return ResponseObj.success(prize);
+    }
+
     @GetMapping(value = "/prize/records.web")
     @ResponseBody
     public BasePager<PrizeRecordModel> getPrizeRecordList(PrizeRecordSearch search) {
@@ -45,5 +56,11 @@ public class LotteryController {
             return ResponseObj.success();
         }
         return ResponseObj.fail();
+    }
+
+    @PostMapping(value = "/draw.do")
+    @ResponseBody
+    public ResponseObj draw(@RequestParam(name = "prizeId") Integer prizeId) {
+        return ResponseObj.success(prizeService.draw(prizeId));
     }
 }

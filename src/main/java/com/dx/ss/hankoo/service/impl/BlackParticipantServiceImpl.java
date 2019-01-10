@@ -34,6 +34,13 @@ public class BlackParticipantServiceImpl implements BlackParticipantService {
     }
 
     @Override
+    public List<BlackParticipant> getBlackParticipants(Integer prizeId) {
+        Example ex = new Example(BlackParticipant.class);
+        ex.createCriteria().andEqualTo("prizeId", prizeId);
+        return blackParticipantMapper.selectByExample(ex);
+    }
+
+    @Override
     public boolean removeBlackParticipantById(Integer id) {
         return id != null && blackParticipantMapper.deleteByPrimaryKey(id) == 1;
     }

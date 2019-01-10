@@ -8,9 +8,13 @@ import java.util.List;
 
 public interface ParticipantService {
 
+    List<Participant> getParticipants();
+
     List<Participant> getParticipants(ParticipantSearch search);
 
     boolean removeParticipant(Integer id);
 
     ParticipantStatisticsModel getParticipantStatistics();
+
+    int win(Integer prizeId, List<Integer> participantIds);
 }
