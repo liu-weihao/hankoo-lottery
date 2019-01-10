@@ -8,12 +8,12 @@ public class MenuController {
 
     @RequestMapping(value = "/index")
     public String index() {
-        return "index";
+        return "/index";
     }
 
     @RequestMapping(value = "/welcome")
     public String welcome() {
-        return "welcome";
+        return "/welcome";
     }
 
     @RequestMapping(value = "/toParticipants.web")
@@ -29,5 +29,10 @@ public class MenuController {
     @RequestMapping(value = "/toPrizeList.web")
     public String toPrizeList() {
         return "/lottery/prize_list";
+    }
+
+    @RequestMapping(value = "/toPrizeRecord.web")
+    public String toPrizeRecord() {
+        return "/lottery/prize_record";
     }
 }

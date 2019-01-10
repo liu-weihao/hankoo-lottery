@@ -12,4 +12,29 @@
     <result column="prize_time" jdbcType="TIMESTAMP" property="prizeTime" />
     <result column="has_received" jdbcType="BIT" property="hasReceived" />
   </resultMap>
+
+  <resultMap id="PrizeRecordModel" type="com.dx.ss.hankoo.dal.model.PrizeRecordModel">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="prize_id" jdbcType="INTEGER" property="prizeId" />
+    <result column="prize_name" jdbcType="VARCHAR" property="prizeName" />
+    <result column="participant_id" jdbcType="INTEGER" property="participantId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="award" jdbcType="VARCHAR" property="award" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+    <result column="prize_time" jdbcType="TIMESTAMP" property="prizeTime" />
+    <result column="has_received" jdbcType="BIT" property="hasReceived" />
+  </resultMap>
+
+  <select id="getPrizeRecordList" parameterType="map" resultMap="PrizeRecordModel">
+    SELECT r.id, prize_id, prize.name AS prize_name, prize.award, r.`count`, participant_id, p.name, has_received, prize_time
+    FROM prize_record AS r, participant AS p, prize
+    WHERE r.prize_id=prize.id AND r.participant_id=p.id
+    <if test="search.name != null and search.name != ''">
+      AND p.name=#{search.name}
+    </if>
+    <if test="search.prizeId != null and search.prizeId != ''">
+      AND r.prize_id=#{search.prizeId}
+    </if>
+    ORDER BY id DESC
+  </select>
 </mapper>

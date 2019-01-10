@@ -102,7 +102,7 @@
                     </dl>
                     <dl class="layui-nav-child">
                         <dd>
-                            <a href="javascript: void(0);" data-url="/agencyList.web">
+                            <a href="javascript: void(0);" data-url="/toPrizeRecord.web">
                                 <i class="iconfont" data-icon='icon-yonghu1'></i>
                                 <span>中奖记录</span>
                             </a>
