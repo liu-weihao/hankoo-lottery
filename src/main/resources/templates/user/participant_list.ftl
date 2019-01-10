@@ -87,6 +87,20 @@
         });
     });
 
+    function getParticipantStatistics() {
+        $.ajax({
+            url: '/hankoo/user/participants/statistics.web',
+            type: 'GET',
+            dataType: 'json',
+            success: function (result) {
+                if (result.status == SUCCESS) {
+                    $("#total").html(result.body.total);
+                    $("#winnerCount").html(result.body.winnerCount);
+                }
+            }
+        })
+    }
+
     function refresh() {
         table.reload("grid", {
             where: $("#form").serializeJson()
