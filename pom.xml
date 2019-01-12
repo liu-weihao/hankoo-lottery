@@ -27,6 +27,7 @@
         <mapper.version>2.1.2</mapper.version>
         <zxing.version>3.3.0</zxing.version>
         <joda-time.version>2.9.9</joda-time.version>
+        <docx.version>1.1.7</docx.version>
         <common.io.version>2.5</common.io.version>
         <common.lang3.version>3.4</common.lang3.version>
         <common.codec.version>1.10</common.codec.version>
@@ -105,6 +106,12 @@
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>3.17</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dx.ss.lib</groupId>
+            <artifactId>docx</artifactId>
+            <version>${docx.version}</version>
         </dependency>
 
         <dependency>
