@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="format-detection" content="telephone=no">
-<title>汉库医学检验所年会抽奖活动-三等奖</title>
+<title>汉库医学检验所年会抽奖活动-一等奖</title>
 <style type="text/css">
 	body {
 		margin: 0;
@@ -27,10 +27,10 @@
 		color: #FFFFFF
 	}
 	.draw{
-		width: 215px;
-		height: 200px;
-		font-size: 55px;
-		line-height: 215px;
+		width: 355px;
+		height: 355px;
+		font-size: 80px;
+		line-height: 355px;
 		text-align: center;
 		float: left;/*让三个盒子左浮动*/
 	}
@@ -42,19 +42,12 @@
 	<h1>汉库医学检验所年会抽奖活动</h1>
 </div>
 <div class="luck-content">
-	<h1>三等奖</h1>
-	<input type="hidden" id="prizeId" value="3"/>
+	<h1>一等奖</h1>
+	<input type="hidden" id="prizeId" value="1"/>
 	<div id="area">
 		<div id="first" class="draw"></div>
 		<div id="second" class="draw"></div>
 		<div id="third" class="draw"></div>
-		<div id="forth" class="draw"></div>
-		<div id="fifth" class="draw"></div>
-		<div id="sixth" class="draw"></div>
-		<div id="seventh" class="draw"></div>
-		<div id="eighth" class="draw"></div>
-		<div id="ninth" class="draw"></div>
-		<div id="tenth" class="draw"></div>
 	</div>
 </div>
 
@@ -64,25 +57,11 @@
         $("#first").html(ran(0));
         $("#second").html(ran(1));
         $("#third").html(ran(2));
-        $("#forth").html(ran(3));
-        $("#fifth").html(ran(4));
-        $("#sixth").html(ran(5));
-        $("#seventh").html(ran(6));
-        $("#eighth").html(ran(7));
-        $("#ninth").html(ran(8));
-        $("#tenth").html(ran(9));
     }
     function setResult(names) {
         $("#first").html(names[0]);
-        $("#second").html(names[1]);
-        $("#third").html(names[2]);
-        $("#forth").html(names[3]);
-        $("#fifth").html(names[4]);
-        $("#sixth").html(names[5]);
-        $("#seventh").html(names[6]);
-        $("#eighth").html(names[7]);
-        $("#ninth").html(names[8]);
-        $("#tenth").html(names[9]);
+         $("#second").html(names[1]);
+         $("#third").html(names[2]);
     }
 </script>
 <script type="text/javascript" src="/js/lottery.js"></script>

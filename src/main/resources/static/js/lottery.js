@@ -3,7 +3,7 @@ var first, second, third;
 var myNumber;
 var hasBegun = false, isOver = false;
 var participants = [];
-
+var prizeId;
 /*将产生随机数的方法进行封装*/
 function ran(num) {
 	var name = participants[Math.floor((Math.random()*participants.length))].name;
@@ -46,7 +46,7 @@ function getParticipants() {
 }/*获取所有的参与者*/
 function init() {
     $.ajax({
-        url : "/hankoo/lottery/prize.do?prizeId=1",
+        url : "/hankoo/lottery/prize.do?prizeId=" + prizeId,
         type : "GET",
         dataType : "json",
         success : function(result) {
@@ -68,7 +68,7 @@ function init() {
 function draw() {
     $.ajax({
         url : "/hankoo/lottery/draw.do",
-        data: {"prizeId": 1},
+        data: {"prizeId": prizeId},
         type : "POST",
         dataType : "json",
         success : function(result) {
@@ -85,22 +85,18 @@ function draw() {
                 clearInterval(myNumber);
                 hasBegun = false;
                 isOver = true;
-                $("#first").html(names[0]);
-                $("#second").html(names[1]);
-                $("#third").html(names[2]);
+                setResult(names);
+                // $("#first").html(names[0]);
+                // $("#second").html(names[1]);
+                // $("#third").html(names[2]);
             } else{
                 alert("抽奖系统初始化失败");
             }
         }
     });
 }
-/*对显示随机数的方法进行封装*/
-function showRandomNum() {
-    $("#first").html(ran(0));
-    $("#second").html(ran(1));
-    $("#third").html(ran(2));
-}
 
 $(function () {
+    prizeId = $("#prizeId").val();
     init();
 });
