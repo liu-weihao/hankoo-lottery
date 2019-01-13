@@ -7,6 +7,7 @@ import com.dx.ss.hankoo.dal.search.biz.ParticipantSearch;
 import com.dx.ss.hankoo.service.BlackParticipantService;
 import com.dx.ss.hankoo.service.ParticipantService;
 import com.github.pagehelper.PageHelper;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,12 +52,28 @@ public class ParticipantServiceImpl implements ParticipantService {
     }
 
     @Override
+    public boolean addParticipant(Participant participant) {
+        return participant != null && participantMapper.insertSelective(participant) == 1;
+    }
+
+    @Override
     public ParticipantStatisticsModel getParticipantStatistics() {
         ParticipantStatisticsModel statistics = new ParticipantStatisticsModel();
         List<Participant> participants = participantMapper.selectAll();
         statistics.setTotal(participants.size());
         statistics.setWinnerCount((int) participants.stream().filter(Participant::getIsWinner).count());
         return statistics;
+    }
+
+    @Override
+    public int empty() {
+        return participantMapper.deleteByExample(new Example(Participant.class));
+    }
+
+    @Override
+    public int addParticipants(List<Participant> participants) {
+        if (CollectionUtils.isEmpty(participants)) return 0;
+        return participantMapper.insertList(participants);
     }
 
     @Override

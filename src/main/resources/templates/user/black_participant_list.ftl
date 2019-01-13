@@ -28,11 +28,11 @@
             <div class="layui-input-inline">
                 <select name="prizeId">
                     <option value="">全部</option>
-                    <option value="1">特等奖</option>
-                    <option value="2">一等奖</option>
-                    <option value="3">二等奖</option>
-                    <option value="4">三等奖</option>
-                    <option value="5">四等奖</option>
+                    <option value="0">特等奖</option>
+                    <option value="1">一等奖</option>
+                    <option value="2">二等奖</option>
+                    <option value="3">三等奖</option>
+                    <option value="4">四等奖</option>
                 </select>
             </div>
         </div>

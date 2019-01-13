@@ -14,7 +14,13 @@ public interface ParticipantService {
 
     boolean removeParticipant(Integer id);
 
+    boolean addParticipant(Participant participant);
+
     ParticipantStatisticsModel getParticipantStatistics();
+
+    int empty();
+
+    int addParticipants(List<Participant> participants);
 
     int win(Integer prizeId, List<Integer> participantIds);
 }

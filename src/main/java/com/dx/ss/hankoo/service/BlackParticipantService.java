@@ -15,6 +15,10 @@ public interface BlackParticipantService {
 
     boolean removeBlackParticipantById(Integer id);
 
+    int addBlackParticipants(List<BlackParticipant> blackParticipants);
+
+    int empty();
+
     int removeBlackParticipant(Integer participantId);
 
     Map<String, Integer> getBlackParticipantStatistics();

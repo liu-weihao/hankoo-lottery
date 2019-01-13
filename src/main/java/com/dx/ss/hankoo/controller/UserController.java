@@ -7,6 +7,7 @@ import com.dx.ss.data.parse.ExcelDocumentParser;
 import com.dx.ss.hankoo.common.constants.ViewConstants;
 import com.dx.ss.hankoo.common.pager.BasePager;
 import com.dx.ss.hankoo.common.pager.IPagerFactory;
+import com.dx.ss.hankoo.dal.beans.BlackParticipant;
 import com.dx.ss.hankoo.dal.beans.Participant;
 import com.dx.ss.hankoo.dal.enums.StatusCode;
 import com.dx.ss.hankoo.dal.model.BlackParticipantModel;
@@ -25,6 +26,7 @@ import org.apache.commons.io.IOUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -125,6 +127,7 @@ public class UserController extends BaseController {
         return ResponseObj.fail();
     }
 
+    @Transactional
     @PostMapping(value = "/participants/import.do")
     @ResponseBody
     public ResponseObj importParticipants(HttpServletRequest request, @RequestParam(name = "file") MultipartFile file, boolean overwrite) throws Exception {
@@ -132,6 +135,10 @@ public class UserController extends BaseController {
         File dest = new File(path);
         if (!dest.getParentFile().exists()) {
             dest.getParentFile().mkdirs();
+        }
+        if (overwrite) {
+            blackParticipantService.empty();
+            participantService.empty();
         }
         IOUtils.write(file.getBytes(), new FileOutputStream(dest));
         DocumentParseDelegate delegate = new DocumentParseDelegate.Builder(WorkerTypeEnums.IMPORT_WORKER)
@@ -143,12 +150,47 @@ public class UserController extends BaseController {
         ExcelDocumentDataHolder holder = (ExcelDocumentDataHolder) resultList.get(0);
         List<ParticipantModel> dataList = (List<ParticipantModel>) holder.getDataList();
         List<Participant> participants = new ArrayList<>(dataList.size());
+        List<BlackParticipant> blackParticipants = new ArrayList<>();
         for (ParticipantModel p : dataList) {
             Participant participant = new Participant();
-            BeanUtils.copyProperties(p, participant);
+            participant.setName(p.getName());
+            participant.setInfo(p.getInfo());
             participant.setIsWinner(Boolean.FALSE);
             participants.add(participant);
+            participantService.addParticipant(participant);
+            Integer participantId = participant.getId();
+            if ("Y".equalsIgnoreCase(p.getSurprise())) {
+                BlackParticipant blackParticipant = new BlackParticipant();
+                blackParticipant.setPrizeId(0);
+                blackParticipant.setParticipantId(participantId);
+                blackParticipants.add(blackParticipant);
+            }
+            if ("Y".equalsIgnoreCase(p.getFirst())) {
+                BlackParticipant blackParticipant = new BlackParticipant();
+                blackParticipant.setPrizeId(1);
+                blackParticipant.setParticipantId(participantId);
+                blackParticipants.add(blackParticipant);
+            }
+            if ("Y".equalsIgnoreCase(p.getSecond())) {
+                BlackParticipant blackParticipant = new BlackParticipant();
+                blackParticipant.setPrizeId(2);
+                blackParticipant.setParticipantId(participantId);
+                blackParticipants.add(blackParticipant);
+            }
+            if ("Y".equalsIgnoreCase(p.getThird())) {
+                BlackParticipant blackParticipant = new BlackParticipant();
+                blackParticipant.setPrizeId(3);
+                blackParticipant.setParticipantId(participantId);
+                blackParticipants.add(blackParticipant);
+            }
+            if ("Y".equalsIgnoreCase(p.getForth())) {
+                BlackParticipant blackParticipant = new BlackParticipant();
+                blackParticipant.setPrizeId(4);
+                blackParticipant.setParticipantId(participantId);
+                blackParticipants.add(blackParticipant);
+            }
         }
-        return ResponseObj.success();
+        blackParticipantService.addBlackParticipants(blackParticipants);
+        return ResponseObj.success(participants.size());
     }
 }

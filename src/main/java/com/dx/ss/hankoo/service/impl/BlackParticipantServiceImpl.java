@@ -46,6 +46,17 @@ public class BlackParticipantServiceImpl implements BlackParticipantService {
     }
 
     @Override
+    public int addBlackParticipants(List<BlackParticipant> blackParticipants) {
+        if (CollectionUtils.isEmpty(blackParticipants)) return 0;
+        return blackParticipantMapper.insertList(blackParticipants);
+    }
+
+    @Override
+    public int empty() {
+        return blackParticipantMapper.deleteByExample(new Example(BlackParticipant.class));
+    }
+
+    @Override
     public int removeBlackParticipant(Integer participantId) {
         if (participantId == null) return 0;
         Example ex = new Example(BlackParticipant.class);

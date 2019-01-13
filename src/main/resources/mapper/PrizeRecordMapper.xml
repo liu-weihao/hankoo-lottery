@@ -32,7 +32,7 @@
     <if test="search.name != null and search.name != ''">
       AND p.name=#{search.name}
     </if>
-    <if test="search.prizeId != null and search.prizeId != ''">
+    <if test="search.prizeId != null">
       AND r.prize_id=#{search.prizeId}
     </if>
     ORDER BY id DESC
