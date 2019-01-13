@@ -35,4 +35,9 @@ public class MenuController {
     public String toPrizeRecord() {
         return "/lottery/prize_record";
     }
+
+    @RequestMapping(value = "/toImportParticipants.web")
+    public String toImportParticipants() {
+        return "/user/import_participants";
+    }
 }

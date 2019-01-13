@@ -71,6 +71,14 @@
                     </a>
                     <dl class="layui-nav-child">
                         <dd>
+                            <a href="javascript: void(0);" data-url="/toImportParticipants.web">
+                                <i class="iconfont" data-icon='icon-yonghu1'></i>
+                                <span>用户导入</span>
+                            </a>
+                        </dd>
+                    </dl>
+                    <dl class="layui-nav-child">
+                        <dd>
                             <a href="javascript: void(0);" data-url="/toParticipants.web">
                                 <i class="iconfont" data-icon='icon-yonghu1'></i>
                                 <span>活动用户</span>
