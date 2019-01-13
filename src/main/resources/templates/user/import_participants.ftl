@@ -20,11 +20,12 @@
     <legend>导入抽奖用户</legend>
 </fieldset>
 <form id="form" class="layui-form" style="margin: 8px;">
+    <input id="overwrite" type="hidden" name="overwrite" value="false"/>
     <ul class="layui-timeline">
         <li class="layui-timeline-item">
             <i class="layui-icon layui-timeline-axis"></i>
             <div class="layui-timeline-content layui-text">
-                <h3 class="layui-timeline-title">点击下载抽奖用户模板表</h3>
+                <h3 class="layui-timeline-title"><a href="/template.xlsx" target="_blank">点击下载</a>抽奖用户模板表</h3>
             </div>
         </li>
         <li class="layui-timeline-item">
@@ -41,20 +42,20 @@
     <div class="layui-inline">
         <label class="layui-form-label">覆盖原有数据</label>
         <div class="layui-input-inline">
-            <input id="overwrite" type="checkbox" checked lay-skin="switch" lay-filter="overwrite" title="ON">
+            <input type="checkbox" lay-skin="switch" lay-filter="overwrite"/>
         </div>
     </div>
 </form>
 
 <div class="layui-inline">
-    <button id="upload_btn" class="layui-btn">立即导入</button>
+    <button id="upload_btn" class="layui-btn" style="margin: 25px;">立即导入</button>
 </div>
 <script src="/plugins/jquery/jquery-3.1.1.min.js"></script>
 <script src="/plugins/layui/layui.js"></script>
-<script src="/plugins/layui/extends/laygrid.js"></script>
 <script src="/js/common.js"></script>
 <script type="text/javascript">
     layui.use(['upload', 'form'], function () {
+        var form = layui.form;
         var upload = layui.upload;
         //拖拽上传
         upload.render({
@@ -73,6 +74,9 @@
             done: function(res){
                 console.log(res)
             }
+        });
+        form.on('switch(overwrite)', function(data){
+            $('#overwrite').val(data.elem.checked);
         });
     });
 </script>

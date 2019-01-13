@@ -28,6 +28,7 @@
         getStatistics();
         laygrid({
             url: '/hankoo/lottery/prizes.web',
+            height: 'full-20',
             cols: [[
                 {field: 'name', title: '奖项', align: 'center'},
                 {field: 'award', title: '奖品名称', align: 'center'},
