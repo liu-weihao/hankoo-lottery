@@ -36,7 +36,9 @@ import javax.validation.Valid;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/hankoo/user")
@@ -191,6 +193,9 @@ public class UserController extends BaseController {
             }
         }
         blackParticipantService.addBlackParticipants(blackParticipants);
-        return ResponseObj.success(participants.size());
+        Map<String, Integer> map = new HashMap<>(2);
+        map.put("participants", participants.size());
+        map.put("blacks", blackParticipants.size());
+        return ResponseObj.success(map);
     }
 }

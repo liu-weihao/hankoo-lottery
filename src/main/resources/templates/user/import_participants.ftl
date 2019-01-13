@@ -72,7 +72,17 @@
             },
             bindAction: '#upload_btn',
             done: function(res){
-                console.log(res)
+                if (res.status === 200) {
+                    layer.open({
+                        title: res.message,
+                        content: '导入成功，总共' + res.body.participants + '名用户。'
+                    });
+                } else {
+                    layer.msg('导入失败', {
+                        icon: 5,
+                        time: 1000
+                    });
+                }
             }
         });
         form.on('switch(overwrite)', function(data){
