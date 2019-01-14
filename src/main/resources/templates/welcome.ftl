@@ -25,6 +25,7 @@
             -ms-flex-align: center;
             align-items: center;
         }
+
         .award_block {
             background-color: #20a0ff;
             line-height: 100px;
@@ -37,25 +38,29 @@
             font-size: 20px;
             cursor: pointer;
         }
+        .award_block a {
+            color: #fff;
+        }
+
     </style>
 </head>
 
 <body>
 <div class="content">
     <div class="award_block">
-        特等奖
+        <a href="/0.html" target="_blank">特等奖</a>
     </div>
     <div class="award_block">
-        一等奖
+        <a href="/1.html" target="_blank">一等奖</a>
     </div>
     <div class="award_block">
-        二等奖
+        <a href="/2.html" target="_blank">二等奖</a>
     </div>
     <div class="award_block">
-        三等奖
+        <a href="/3.html" target="_blank">三等奖</a>
     </div>
     <div class="award_block">
-        四等奖
+        <a href="/4.html" target="_blank">四等奖</a>
     </div>
 </div>
 </body>
