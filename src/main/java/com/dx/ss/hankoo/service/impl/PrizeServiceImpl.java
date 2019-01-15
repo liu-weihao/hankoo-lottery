@@ -12,10 +12,10 @@ import com.dx.ss.hankoo.service.BlackParticipantService;
 import com.dx.ss.hankoo.service.ParticipantService;
 import com.dx.ss.hankoo.service.PrizeService;
 import com.github.pagehelper.PageHelper;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import tk.mybatis.mapper.entity.Example;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -102,7 +102,21 @@ public class PrizeServiceImpl implements PrizeService {
         //抽奖结束
         prize.setIsOver(Boolean.TRUE);
         prizeMapper.updateByPrimaryKeySelective(prize);
+        sunshine();
         return participantIds;
+    }
+
+    @Transactional
+    @Override
+    public int sunshine() {
+        List<Prize> prizeList = getPrizeList().stream().filter(Prize::getIsOver).collect(Collectors.toList());
+        if (CollectionUtils.size(prizeList) < 5) return 0;
+        Prize prize = new Prize();
+        prize.setId(6);
+        //抽奖结束
+        prize.setIsOver(Boolean.TRUE);
+        prizeMapper.updateByPrimaryKeySelective(prize);
+        return participantService.win(prize.getId(), participantService.getParticipants().stream().map(Participant::getId).collect(Collectors.toList()));
     }
 
 }

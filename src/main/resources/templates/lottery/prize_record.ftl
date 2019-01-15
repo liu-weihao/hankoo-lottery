@@ -30,6 +30,7 @@
                     <option value="2">二等奖</option>
                     <option value="3">三等奖</option>
                     <option value="4">四等奖</option>
+                    <option value="6">阳光普照奖</option>
                 </select>
             </div>
         </div>

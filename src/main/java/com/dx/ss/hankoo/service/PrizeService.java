@@ -17,4 +17,6 @@ public interface PrizeService {
     boolean receivePrize(Integer id, boolean hasReceived);
 
     List<Integer> draw(Integer prizeId);
+
+    int sunshine();
 }

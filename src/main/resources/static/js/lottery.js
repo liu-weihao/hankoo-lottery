@@ -31,7 +31,7 @@ function getParticipants() {
                             return;
                         }
                         if (!hasBegun) {
-                            myNumber = setInterval(showRandomNum, 55);//55ms运行一次
+                            myNumber = setInterval(showRandomNum, 25);//55ms运行一次
                             hasBegun = true;
                         } else {
                             draw();
@@ -86,9 +86,6 @@ function draw() {
                 hasBegun = false;
                 isOver = true;
                 setResult(names);
-                // $("#first").html(names[0]);
-                // $("#second").html(names[1]);
-                // $("#third").html(names[2]);
             } else{
                 alert("抽奖系统初始化失败");
             }
