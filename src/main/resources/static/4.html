@@ -1,88 +1,179 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="renderer" content="webkit">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="format-detection" content="telephone=no">
-<title>2019年汉库集团年会抽奖活动-四等奖</title>
-<style type="text/css">
-	body {
-		margin: 0;
-		padding: 0;
-		background-image: url('images/back.jpg');
-	}
-	h1{
-		text-align: center;/*文本居中*/
-		padding-top: 10px;
-	}
-	.luck-content{
-		width: 1080px;
-		height: 450px;
-		margin: 0 auto;/*div网页居中*/
-		background: rgba(0,0,0,.6);
-		color: #FFFFFF
-	}
-	.draw{
-		width: 215px;
-		height: 200px;
-		font-size: 45px;
-		line-height: 215px;
-		text-align: center;
-		float: left;/*让三个盒子左浮动*/
-	}
-</style>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" type="text/css" href="/css/fit.css">
+	<title>2019年汉库集团年会抽奖活动-四等奖</title>
+	<style type="text/css">
+		body {
+			background-image: url('images/back.jpg');
+		}
+
+		h1 {
+			text-align: center;
+			padding-top: .1rem;
+		}
+
+		.body {
+			width: 55rem;
+			height: 22rem;
+			margin: 0 auto;
+			display: flex;
+		}
+
+		.luck-content {
+			width: 40rem;
+			margin: 0 auto;
+			background: rgba(0, 0, 0, .6);
+			color: #FFFFFF
+		}
+
+		.prize-container {
+			width: 21rem;
+			margin: 0 auto;
+			text-align: center;
+			background: rgba(0, 0, 0, .6);
+			color: #FFFFFF
+		}
+
+		.draw {
+			width: 7.2rem;
+			height: 10rem;
+			font-size: 1.4rem;
+			text-align: center;
+			float: left;
+		}
+
+		.title {
+			margin-top: 3.5rem;
+		}
+
+		.sub_title {
+			font-size: 1rem;
+		}
+
+		.prize-img {
+			margin-top: 2.5rem;
+		}
+
+		img {
+			width: 13rem;
+			height: auto;
+			margin: 1rem;
+		}
+
+		.prize-name {
+			text-align: center;
+		}
+	</style>
 
 </head>
 <body>
-<div style="margin:20px auto; text-align:center">
-	<h1>2019年汉库集团年会抽奖活动</h1>
-</div>
-<div class="luck-content">
-	<h1>四等奖</h1>
+<div style="margin: 1.22rem auto; text-align:center">
+	<h1>2019年汉库集团年会抽奖活动（四等奖）</h1>
 	<input type="hidden" id="prizeId" value="4"/>
-	<div id="area">
-		<div id="first" class="draw"></div>
-		<div id="second" class="draw"></div>
-		<div id="third" class="draw"></div>
-		<div id="forth" class="draw"></div>
-		<div id="fifth" class="draw"></div>
-		<div id="sixth" class="draw"></div>
-		<div id="seventh" class="draw"></div>
-		<div id="eighth" class="draw"></div>
-		<div id="ninth" class="draw"></div>
-		<div id="tenth" class="draw"></div>
+</div>
+<div class="body">
+	<div class="prize-container">
+		<div class="prize-img">
+			<img id="award" src="/images/prize.jpg" alt="奖品图片">
+		</div>
+		<h3 class="prize-name">四等奖</h3>
+	</div>
+	<div class="luck-content">
+		<div id="first" class="draw">
+			<div class="title"></div>
+			<div class="sub_title"></div>
+		</div>
+		<div id="second" class="draw">
+			<div class="title"></div>
+			<div class="sub_title"></div>
+		</div>
+		<div id="third" class="draw">
+			<div class="title"></div>
+			<div class="sub_title"></div>
+		</div>
+		<div id="forth" class="draw">
+			<div class="title"></div>
+			<div class="sub_title"></div>
+		</div>
+		<div id="fifth" class="draw">
+			<div class="title"></div>
+			<div class="sub_title"></div>
+		</div>
+		<div id="sixth" class="draw">
+			<div class="title"></div>
+			<div class="sub_title"></div>
+		</div>
+		<div id="seventh" class="draw">
+			<div class="title"></div>
+			<div class="sub_title"></div>
+		</div>
+		<div id="eighth" class="draw">
+			<div class="title"></div>
+			<div class="sub_title"></div>
+		</div>
+		<div id="ninth" class="draw">
+			<div class="title"></div>
+			<div class="sub_title"></div>
+		</div>
+		<div id="tenth" class="draw">
+			<div class="title"></div>
+			<div class="sub_title"></div>
+		</div>
 	</div>
 </div>
-
 <script type="text/javascript" src="/plugins/jquery/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
     function showRandomNum() {
-        $("#first").html(ran(0));
-        $("#second").html(ran(1));
-        $("#third").html(ran(2));
-        $("#forth").html(ran(3));
-        $("#fifth").html(ran(4));
-        $("#sixth").html(ran(5));
-        $("#seventh").html(ran(6));
-        $("#eighth").html(ran(7));
-        $("#ninth").html(ran(8));
-        $("#tenth").html(ran(9));
+        $("#first div:nth-child(1)").html(ran(0));
+        $("#second div:nth-child(1)").html(ran(1));
+        $("#third div:nth-child(1)").html(ran(2));
+        $("#forth div:nth-child(1)").html(ran(3));
+        $("#fifth div:nth-child(1)").html(ran(4));
+        $("#sixth div:nth-child(1)").html(ran(5));
+        $("#seventh div:nth-child(1)").html(ran(6));
+        $("#eighth div:nth-child(1)").html(ran(7));
+        $("#ninth div:nth-child(1)").html(ran(8));
+        $("#tenth div:nth-child(1)").html(ran(9));
     }
-    function setResult(names) {
-        $("#first").html(names[0]);
-        $("#second").html(names[1]);
-        $("#third").html(names[2]);
-        $("#forth").html(names[3]);
-        $("#fifth").html(names[4]);
-        $("#sixth").html(names[5]);
-        $("#seventh").html(names[6]);
-        $("#eighth").html(names[7]);
-        $("#ninth").html(names[8]);
-        $("#tenth").html(names[9]);
+
+    function setResult(winners) {
+        $("#first div:nth-child(1)").html(winners[0].name);
+        $("#first div:nth-child(2)").html(winners[0].info);
+
+        $("#second div:nth-child(1)").html(winners[1].name);
+        $("#second div:nth-child(2)").html(winners[1].info);
+
+        $("#third div:nth-child(1)").html(winners[2].name);
+        $("#third div:nth-child(2)").html(winners[2].info);
+
+        $("#forth div:nth-child(1)").html(winners[3].name);
+        $("#forth div:nth-child(2)").html(winners[3].info);
+
+        $("#fifth div:nth-child(1)").html(winners[4].name);
+        $("#fifth div:nth-child(2)").html(winners[4].info);
+
+        $("#sixth div:nth-child(1)").html(winners[5].name);
+        $("#sixth div:nth-child(2)").html(winners[5].info);
+
+        $("#seventh div:nth-child(1)").html(winners[6].name);
+        $("#seventh div:nth-child(2)").html(winners[6].info);
+
+        $("#eighth div:nth-child(1)").html(winners[7].name);
+        $("#eighth div:nth-child(2)").html(winners[7].info);
+
+        $("#ninth div:nth-child(1)").html(winners[8].name);
+        $("#ninth div:nth-child(2)").html(winners[8].info);
+
+        $("#tenth div:nth-child(1)").html(winners[9].name);
+        $("#tenth div:nth-child(2)").html(winners[9].info);
     }
 </script>
 <script type="text/javascript" src="/js/lottery.js"></script>
