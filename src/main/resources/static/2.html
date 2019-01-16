@@ -16,23 +16,40 @@
 		background-image: url('images/back.jpg');
 	}
 	h1{
-		text-align: center;/*文本居中*/
+		text-align: center;
 		padding-top: 10px;
 	}
-	.luck-content{
+	.body {
 		width: 1080px;
 		height: 450px;
-		margin: 0 auto;/*div网页居中*/
+		display: flex;
+	}
+	.luck-content{
+		width: 780px;
+		height: 450px;
+		margin: 0 auto;
+		background: rgba(0,0,0,.6);
+		color: #FFFFFF
+	}
+	.prize-container {
+		width: 350px;
+		height: 450px;
+		margin: 0 auto;
 		background: rgba(0,0,0,.6);
 		color: #FFFFFF
 	}
 	.draw{
-		width: 350px;
+		width: 250px;
 		height: 210px;
-		font-size: 65px;
-		line-height: 210px;
+		font-size: 40px;
 		text-align: center;
-		float: left;/*让三个盒子左浮动*/
+		float: left;
+	}
+	.title {
+		margin-top: 40px;
+	}
+	.sub_title {
+		font-size: 23px;
 	}
 </style>
 
@@ -40,36 +57,76 @@
 <body>
 <div style="margin:20px auto; text-align:center">
 	<h1>2019年汉库集团年会抽奖活动</h1>
-</div>
-<div class="luck-content">
-	<h1>二等奖</h1>
 	<input type="hidden" id="prizeId" value="2"/>
-	<div id="area">
-		<div id="first" class="draw"></div>
-		<div id="second" class="draw"></div>
-		<div id="third" class="draw"></div>
-		<div id="forth" class="draw"></div>
-		<div id="fifth" class="draw"></div>
-		<div id="sixth" class="draw"></div>
+</div>
+<div class="body">
+		<!--<h1>二等奖</h1>-->
+	<div class="prize-container">
+		<div class="prize-img">
+			<img src="https://www.sessionhd.com/files/docs/download/ab933733-2a66-4514-bb32-48460afff0fd" alt="">
+		</div>
+		<div class="prize-name">
+			iphone XR
+		</div>
+	</div>
+	<div class="luck-content">
+		<div id="area">
+			<div id="first" class="draw">
+				<div class="title"></div>
+				<div class="sub_title"></div>
+			</div>
+			<div id="second" class="draw">
+				<div class="title"></div>
+				<div class="sub_title"></div>
+			</div>
+			<div id="third" class="draw">
+				<div class="title"></div>
+				<div class="sub_title"></div>
+			</div>
+			<div id="forth" class="draw">
+				<div class="title"></div>
+				<div class="sub_title"></div>
+			</div>
+			<div id="fifth" class="draw">
+				<div class="title"></div>
+				<div class="sub_title"></div>
+			</div>
+			<div id="sixth" class="draw">
+				<div class="title"></div>
+				<div class="sub_title"></div>
+			</div>
+		</div>
 	</div>
 </div>
 <script type="text/javascript" src="/plugins/jquery/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
     function showRandomNum() {
-        $("#first").html(ran(0));
-        $("#second").html(ran(1));
-        $("#third").html(ran(2));
-        $("#forth").html(ran(3));
-        $("#fifth").html(ran(4));
-        $("#sixth").html(ran(5));
+        $("#first div:nth-child(1)").html(ran(0));
+        $("#second div:nth-child(1)").html(ran(1));
+        $("#third div:nth-child(1)").html(ran(2));
+        $("#forth div:nth-child(1)").html(ran(3));
+        $("#fifth div:nth-child(1)").html(ran(4));
+        $("#sixth div:nth-child(1)").html(ran(5));
     }
-    function setResult(names) {
-        $("#first").html(names[0]);
-        $("#second").html(names[1]);
-        $("#third").html(names[2]);
-        $("#forth").html(names[3]);
-        $("#fifth").html(names[4]);
-        $("#sixth").html(names[5]);
+    function setResult(winners) {
+        console.log(winners);
+        $("#first div:nth-child(1)").html(winners[0].name);
+        $("#first div:nth-child(2)").html(winners[0].info);
+
+        $("#second div:nth-child(1)").html(winners[1].name);
+        $("#second div:nth-child(2)").html(winners[1].info);
+
+        $("#third div:nth-child(1)").html(winners[2].name);
+        $("#third div:nth-child(2)").html(winners[2].info);
+
+        $("#forth div:nth-child(1)").html(winners[3].name);
+        $("#forth div:nth-child(2)").html(winners[3].info);
+
+        $("#fifth div:nth-child(1)").html(winners[4].name);
+        $("#fifth div:nth-child(2)").html(winners[4].info);
+
+        $("#sixth div:nth-child(1)").html(winners[5].name);
+        $("#sixth div:nth-child(2)").html(winners[5].info);
     }
 </script>
 <script type="text/javascript" src="/js/lottery.js"></script>

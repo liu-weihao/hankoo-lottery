@@ -1,5 +1,4 @@
 var arr = [];
-var first, second, third;
 var myNumber;
 var hasBegun = false, isOver = false;
 var participants = [];
@@ -74,18 +73,18 @@ function draw() {
         success : function(result) {
             if(result.status === 200){
                 var participantIds = result.body;
-                var names = [];
+                var winners = [];
                 for (var i=0; i<participantIds.length; i++) {
                     for (var j=0; j<participants.length; j++) {
                         if (participantIds[i] === participants[j].id) {
-                            names[i] = participants[j].name;
+                            winners[i] = participants[j];
                         }
                     }
                 }
                 clearInterval(myNumber);
                 hasBegun = false;
                 isOver = true;
-                setResult(names);
+                setResult(winners);
             } else{
                 alert("抽奖系统初始化失败");
             }
