@@ -42,7 +42,8 @@ function getParticipants() {
             }
         }
     });
-}/*获取所有的参与者*/
+}
+
 function init() {
     $.ajax({
         url : "/hankoo/lottery/prize.do?prizeId=" + prizeId,
@@ -52,6 +53,8 @@ function init() {
             if(result.status === 200){
                 var prize = result.body;
                 if (prize && !prize.isOver) {
+                    $(".prize-name").html(prize.award);
+                    $("#award").attr("src", prize.pic);
                     getParticipants();
                 } else {
                     isOver = true;

@@ -27,6 +27,11 @@ public class Prize {
     private String award;
 
     /**
+     * 奖品图片
+     */
+    private String pic;
+
+    /**
      * 奖品数量
      */
     private Integer count;

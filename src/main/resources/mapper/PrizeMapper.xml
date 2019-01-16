@@ -8,6 +8,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="award" jdbcType="VARCHAR" property="award" />
+    <result column="pic" jdbcType="VARCHAR" property="pic" />
     <result column="count" jdbcType="INTEGER" property="count" />
     <result column="is_over" jdbcType="BIT" property="isOver" />
     <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
