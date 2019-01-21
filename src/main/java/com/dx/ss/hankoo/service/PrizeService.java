@@ -18,5 +18,7 @@ public interface PrizeService {
 
     List<Integer> draw(Integer prizeId);
 
+    Integer redraw(Integer prizeId);
+
     int sunshine();
 }

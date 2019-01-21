@@ -17,10 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -102,8 +99,30 @@ public class PrizeServiceImpl implements PrizeService {
         //抽奖结束
         prize.setIsOver(Boolean.TRUE);
         prizeMapper.updateByPrimaryKeySelective(prize);
-        sunshine();
+//        sunshine();
         return participantIds;
+    }
+
+    @Transactional
+    @Override
+    public Integer redraw(Integer prizeId) {
+        //黑名单参与者
+        List<Integer> blackParticipantIds = blackParticipantService.getBlackParticipants(prizeId).stream().map(BlackParticipant::getParticipantId).collect(Collectors.toList());
+        //尚未未中奖，且未在黑名单中的参与者
+        List<Participant> participants = participantService.getParticipants().stream().filter(participant -> !participant.getIsWinner() && !blackParticipantIds.contains(participant.getId())).collect(Collectors.toList());
+        Random random = new Random();
+        if (CollectionUtils.isEmpty(participants)) return 0;
+        Participant participant = participants.get(random.nextInt(participants.size()));
+        Integer id = participant.getId();
+        participantService.win(prizeId, Collections.singletonList(id));
+        PrizeRecord record = new PrizeRecord();
+        record.setPrizeId(prizeId);
+        record.setParticipantId(id);
+        record.setCount(1);
+        record.setPrizeTime(new Date());
+        record.setHasReceived(Boolean.FALSE);
+        recordMapper.insertSelective(record);
+        return id;
     }
 
     @Transactional

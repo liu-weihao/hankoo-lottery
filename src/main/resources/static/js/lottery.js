@@ -1,5 +1,5 @@
 var arr = [];
-var myNumber;
+var myNumber, single;
 var hasBegun = false, isOver = false;
 var participants = [];
 var prizeId;
@@ -20,7 +20,7 @@ function getParticipants() {
         type : "GET",
         dataType : "json",
         success : function(result) {
-            if(result.status === 200){
+            if(result.status === 200) {
                 participants = result.body;
                 $(document).keydown(function(e) {
                     if (!e) e = window.event;
@@ -30,11 +30,25 @@ function getParticipants() {
                             return;
                         }
                         if (!hasBegun) {
-                            myNumber = setInterval(showRandomNum, 25);//55ms运行一次
+                            myNumber = setInterval(showRandomNum, 25);//25ms运行一次
                             hasBegun = true;
                         } else {
                             draw();
                         }
+                    }
+                });
+
+                $(".draw").click(function () {
+                    var index = this.getAttribute("data");
+                    var nodes = this.children;
+                    if (!hasBegun) {
+                        hasBegun = true;
+                        nodes[1].innerHTML = "";
+                        single = setInterval(function() {
+                            nodes[0].innerHTML = ran(index);
+                        }, 25);//25ms运行一次
+                    } else {
+                        redraw(this.id);
                     }
                 });
             } else{
@@ -88,6 +102,31 @@ function draw() {
                 hasBegun = false;
                 isOver = true;
                 setResult(winners);
+            } else{
+                alert("抽奖系统初始化失败");
+            }
+        }
+    });
+}
+/*重抽*/
+function redraw(elem) {
+    $.ajax({
+        url : "/hankoo/lottery/redraw.do",
+        data: {"prizeId": prizeId},
+        type : "POST",
+        dataType : "json",
+        success : function(result) {
+            if(result.status === 200){
+                var participantId = result.body;
+                for (var i=0; i<participants.length; i++) {
+                    if (participantId === participants[i].id) {
+                        var nodes = document.getElementById(elem).children;
+                        nodes[0].innerHTML = participants[i].name;
+                        nodes[1].innerHTML = participants[i].info;
+                    }
+                }
+                clearInterval(single);
+                hasBegun = false;
             } else{
                 alert("抽奖系统初始化失败");
             }

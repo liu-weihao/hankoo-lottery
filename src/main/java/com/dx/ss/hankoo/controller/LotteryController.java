@@ -63,4 +63,10 @@ public class LotteryController {
     public ResponseObj draw(@RequestParam(name = "prizeId") Integer prizeId) {
         return ResponseObj.success(prizeService.draw(prizeId));
     }
+
+    @PostMapping(value = "/redraw.do")
+    @ResponseBody
+    public ResponseObj redraw(@RequestParam(name = "prizeId") Integer prizeId) {
+        return ResponseObj.success(prizeService.redraw(prizeId));
+    }
 }
