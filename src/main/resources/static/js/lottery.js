@@ -26,7 +26,7 @@ function getParticipants() {
                     if (!e) e = window.event;
                     if (e.keyCode === 32) {
                         if (isOver) {
-                            alert("抽奖活动已结束");
+                            alert("抽奖活动已结束，点击姓名重抽");
                             return;
                         }
                         if (!hasBegun) {
@@ -41,14 +41,18 @@ function getParticipants() {
                 $(".draw").click(function () {
                     var index = this.getAttribute("data");
                     var nodes = this.children;
-                    if (!hasBegun) {
-                        hasBegun = true;
-                        nodes[1].innerHTML = "";
-                        single = setInterval(function() {
-                            nodes[0].innerHTML = ran(index);
-                        }, 25);//25ms运行一次
-                    } else {
-                        redraw(this.id);
+                    //大前提是已经完整抽过一次了
+                    if (isOver) {
+                        if (!hasBegun) {
+                            console.log(index + "重抽");
+                            hasBegun = true;
+                            nodes[1].innerHTML = "";
+                            single = setInterval(function() {
+                                nodes[0].innerHTML = ran(index);
+                            }, 25);//25ms运行一次
+                        } else {
+                            redraw(this.id);
+                        }
                     }
                 });
             } else{
@@ -88,6 +92,7 @@ function draw() {
         type : "POST",
         dataType : "json",
         success : function(result) {
+            clearInterval(myNumber);
             if(result.status === 200){
                 var participantIds = result.body;
                 var winners = [];
@@ -98,7 +103,6 @@ function draw() {
                         }
                     }
                 }
-                clearInterval(myNumber);
                 hasBegun = false;
                 isOver = true;
                 setResult(winners);
@@ -116,16 +120,16 @@ function redraw(elem) {
         type : "POST",
         dataType : "json",
         success : function(result) {
+            clearInterval(single);
             if(result.status === 200){
+                var nodes = document.getElementById(elem).children;
                 var participantId = result.body;
                 for (var i=0; i<participants.length; i++) {
                     if (participantId === participants[i].id) {
-                        var nodes = document.getElementById(elem).children;
                         nodes[0].innerHTML = participants[i].name;
                         nodes[1].innerHTML = participants[i].info;
                     }
                 }
-                clearInterval(single);
                 hasBegun = false;
             } else{
                 alert("抽奖系统初始化失败");
