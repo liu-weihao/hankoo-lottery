@@ -101,6 +101,30 @@
         })
     }
 
+    function removeParticipant(id) {
+        $.ajax({
+            url: '/hankoo/user/participants.web',
+            type: 'DELETE',
+            data: {"id": id},
+            dataType: 'json',
+            success: function (result) {
+                if (result.status == SUCCESS) {
+                    layer.msg('操作成功', {
+                        icon: 6,
+                        time: 600
+                    }, function () {
+                        refresh();
+                    });
+                } else {//请求失败
+                    layer.msg(result.message, {
+                        icon: 5,
+                        time: 1000
+                    });
+                }
+            }
+        })
+    }
+
     function refresh() {
         table.reload("grid", {
             where: $("#form").serializeJson()
